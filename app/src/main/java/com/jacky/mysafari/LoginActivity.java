@@ -26,6 +26,7 @@ import android.widget.Toast;
             @Override
             public void onClick(View v) {
                 String name = mDetails.getText().toString();
+                Toast.makeText(LoginActivity.this, "Details Captured!!", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 intent.putExtra("name", name);
                 startActivity(intent);
