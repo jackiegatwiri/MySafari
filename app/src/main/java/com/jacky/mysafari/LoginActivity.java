@@ -26,8 +26,9 @@ import android.widget.Toast;
             @Override
             public void onClick(View v) {
                 String name = mDetails.getText().toString();
-                Log.d(TAG, name);
-                Toast.makeText(LoginActivity.this, name, Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                intent.putExtra("name", name);
+                startActivity(intent);
             }
         });
     }
