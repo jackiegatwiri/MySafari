@@ -13,8 +13,7 @@
         android:layout_height="wrap_content"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:textColorHint="@color/Fuchsia"
-
+        android:layout_marginTop="40dp"
         >
 
         <com.google.android.material.textfield.TextInputEditText
@@ -32,7 +31,7 @@
         android:layout_height="wrap_content"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:textColorHint="@color/Fuchsia"
+
 
         >
 
@@ -52,7 +51,7 @@
         android:layout_height="wrap_content"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:textColorHint="@color/Fuchsia"
+
 
         >
 
@@ -72,7 +71,7 @@
         android:layout_height="wrap_content"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:textColorHint="@color/Fuchsia"
+
 
         >
 
@@ -91,7 +90,6 @@
         android:layout_height="wrap_content"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:textColorHint="@color/Fuchsia"
 
         >
 
@@ -141,9 +139,10 @@
         android:layout_height="60dp"
         android:text="Sign Up"
         android:textSize="22sp"
-        android:textColor="@color/MediumOrchid"
+        android:textColor="@color/White"
         android:layout_marginTop="40dp"
         android:background="@drawable/button"
+        android:onClick="btn_signin"
         />
 
 </LinearLayout>
