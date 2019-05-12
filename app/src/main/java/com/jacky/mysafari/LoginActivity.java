@@ -1,4 +1,4 @@
-package com.jacky.mysafari;
+ package com.jacky.mysafari;
 
 import androidx.appcompat.app.AppCompatActivity;
 
