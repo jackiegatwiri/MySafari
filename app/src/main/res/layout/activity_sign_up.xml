@@ -142,6 +142,8 @@
         android:text="Sign Up"
         android:textSize="22sp"
         android:textColor="@color/MediumOrchid"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/button"
         />
 
 </LinearLayout>
