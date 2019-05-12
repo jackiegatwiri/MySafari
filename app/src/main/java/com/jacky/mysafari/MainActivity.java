@@ -16,6 +16,6 @@ public class MainActivity extends AppCompatActivity {
         mnameView = (TextView) findViewById(R.id.userView);
         Intent intent = getIntent();
         String name = intent.getStringExtra("name");
-        mnameView.setText("You have succefully logged in: " + name);
+        mnameView.setText("You have successfully logged in: " + name);
     }
 }
