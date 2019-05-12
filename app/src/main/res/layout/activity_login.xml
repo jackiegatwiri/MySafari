@@ -30,6 +30,8 @@
             android:ems="10"
             android:inputType="text"
             android:textSize="20sp"
+            android:id="@+id/name"
+            android:layout_above="@+id/loginButton"
             />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -48,18 +50,21 @@
             android:ems="10"
             android:inputType="text"
             android:textSize="20sp"
+            android:id="@+id/password"
+            android:layout_above="@+id/loginButton"
             />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
+        android:id="@+id/loginButton"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:text="Login"
         android:textSize="22sp"
         android:textColor="@color/White"
         android:layout_marginTop="40dp"
-        android:background="@drawable/button"
-        android:onClick="btn_main"
+        android:background="@drawable/button"/>
+        <!--android:onClick="btn_main"-->
         />
 
     <Button
@@ -69,8 +74,8 @@
         android:textSize="22sp"
         android:textColor="@color/White"
         android:layout_marginTop="40dp"
-        android:background="@drawable/button"
-        android:onClick="btn_signup"
+        android:background="@drawable/button" />
+        <!--android:onClick="btn_signup"-->
         />
 
 </LinearLayout>

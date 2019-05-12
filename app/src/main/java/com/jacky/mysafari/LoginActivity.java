@@ -4,22 +4,42 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
  public class LoginActivity extends AppCompatActivity {
+
+     private Button mLoginButton;
+     private EditText mDetails;
+     private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        mDetails = (EditText) findViewById(R.id.name);
+        mLoginButton = (Button) findViewById(R.id.loginButton);
+        mLoginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String name = mDetails.getText().toString();
+                Log.d(TAG, name);
+                Toast.makeText(LoginActivity.this, name, Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
-     public void btn_signup(View view) {
 
-        startActivity(new Intent(getApplicationContext(), SignUpActivity.class));
-     }
 
-     public void btn_main(View view) {
-         startActivity(new Intent(getApplicationContext(), MainActivity.class));
-     }
+//     public void btn_signup(View view) {
+//
+//        startActivity(new Intent(getApplicationContext(), SignUpActivity.class));
+//     }
+//
+//     public void btn_main(View view) {
+//         startActivity(new Intent(getApplicationContext(), MainActivity.class));
+//     }
  }
