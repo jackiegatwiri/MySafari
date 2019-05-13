@@ -36,10 +36,10 @@ import android.widget.Toast;
 
 
 
-//     public void btn_signup(View view) {
-//
-//        startActivity(new Intent(getApplicationContext(), SignUpActivity.class));
-//     }
+     public void btn_signup(View view) {
+
+        startActivity(new Intent(getApplicationContext(), SignUpActivity.class));
+     }
 //
 //     public void btn_main(View view) {
 //         startActivity(new Intent(getApplicationContext(), MainActivity.class));

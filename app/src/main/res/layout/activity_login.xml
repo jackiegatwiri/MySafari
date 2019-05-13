@@ -55,6 +55,7 @@
             />
     </com.google.android.material.textfield.TextInputLayout>
 
+
     <Button
         android:id="@+id/loginButton"
         android:layout_width="match_parent"
@@ -74,8 +75,8 @@
         android:textSize="22sp"
         android:textColor="@color/White"
         android:layout_marginTop="40dp"
-        android:background="@drawable/button" />
-        <!--android:onClick="btn_signup"-->
-        />
+        android:background="@drawable/button"
+        android:onClick="btn_signup" />
+
 
 </LinearLayout>
