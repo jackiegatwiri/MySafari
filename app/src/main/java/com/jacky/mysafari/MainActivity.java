@@ -40,8 +40,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mnameView = (TextView) findViewById(R.id.userView);
         Intent intent = getIntent();
-        String name = intent.getStringExtra("name");
-        mnameView.setText("You have successfully logged in: " + name);
+        String emails = intent.getStringExtra("emails");
+        mnameView.setText("You have successfully logged in: " + emails);
 
         mRecyclerView = findViewById(R.id.recyclerView);
         mAdapter = new ImagesListAdapter(getApplicationContext(), countries);
