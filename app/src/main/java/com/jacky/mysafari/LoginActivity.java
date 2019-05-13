@@ -6,6 +6,7 @@
  import android.util.Log;
 
  import android.content.Intent;
+ import android.util.Patterns;
  import android.view.View;
  import android.widget.Button;
  import android.widget.EditText;
@@ -124,7 +125,7 @@
          String email = _emailText.getText().toString();
          String password = _passwordText.getText().toString();
 
-         if (email == "" ) {
+         if (email == "" || !(Patterns.EMAIL_ADDRESS.matcher(email).matches()) ) {
              _emailText.setError("enter a valid email address");
              valid = false;
          } else {
