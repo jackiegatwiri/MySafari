@@ -14,14 +14,23 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
+import com.jacky.mysafari.adapters.ImagesListAdapter;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.Menu;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity
 
@@ -29,10 +38,28 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private TextView mnameView;
 
+    private ArrayList<Country> mCountry = new ArrayList<>();
+    ImagesListAdapter mAdapter;
+
+    @BindView(R.id.recyclerView)
+    RecyclerView mRecyclerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ButterKnife.bind(this);
+
+        mCountry.add(new Country("Italy"));
+        mCountry.add(new Country("England"));
+        mCountry.add(new Country("Hungary"));
+        mCountry.add(new Country("Kenya"));
+        mCountry.add(new Country("India"));
+        mCountry.add(new Country("philippines"));
+        mCountry.add(new Country("USA"));
+        mCountry.add(new Country("Peninsula"));
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -58,6 +85,14 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+
+        mAdapter = new ImagesListAdapter(getApplicationContext(), mCountry);
+        mRecyclerView.setAdapter(mAdapter);
+//                        RecyclerView.LayoutManager layoutManager =
+//                                new LinearLayoutManager(RestaurantsActivity.this);
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(MainActivity.this, 2);
+        mRecyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setHasFixedSize(true); //width and height should remain the same
     }
 
     @Override
