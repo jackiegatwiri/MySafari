@@ -34,6 +34,7 @@ MySafari is an android application that lets users choose from a list of vacatio
 * Android
 
 ## Licence
-- This project is licensed under the MIT Open Source license Copyright (c) 2019. 
+- This project is licensed under the MIT Open Source license Copyright (c) 2019.
+[![MIT Licence](https://badges.frapsoft.com/os/mit/mit-125x28.png?v=103)](LICENSE)
 
 
