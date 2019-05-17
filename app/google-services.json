@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "213181899187",
+    "firebase_url": "https://mysafari-1712b.firebaseio.com",
+    "project_id": "mysafari-1712b",
+    "storage_bucket": "mysafari-1712b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:213181899187:android:e23e6ebc1b1afb32",
+        "android_client_info": {
+          "package_name": "com.jacky.mysafari"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "213181899187-c8s1jdgjaacspecetrc1bdja2mfftrc6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jacky.mysafari",
+            "certificate_hash": "f23e85d46ce41afee29fd217c1ffd0899b6dfb23"
+          }
+        },
+        {
+          "client_id": "213181899187-9f4fevs278cln53ifecufldqgb1qt5i5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLYFWhuoev7aSRKSrTlIoAXvZr1yEOWLA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "213181899187-9f4fevs278cln53ifecufldqgb1qt5i5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

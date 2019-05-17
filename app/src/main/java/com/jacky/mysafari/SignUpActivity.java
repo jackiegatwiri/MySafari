@@ -4,15 +4,24 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -28,16 +37,20 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     @BindView(R.id.confirmPassword) TextView mconfirmPassword;
     @BindView(R.id.signup) Button msignup;
     @BindView(R.id.login) TextView mlogin;
+    @BindView(R.id.progressBar) ProgressBar mprogressBar;
+    private FirebaseAuth firebaseAuth;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-        ButterKnife.bind(this);
+        firebaseAuth = FirebaseAuth.getInstance();
 
+        ButterKnife.bind(this);
         msignup.setOnClickListener(this);
         mlogin.setOnClickListener(this);
+        mprogressBar.setVisibility(View.INVISIBLE);
     }
     public boolean validation(){
         boolean valid = false;
@@ -49,7 +62,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             memail.setError("Invalid email address");
         }
         else if(mpassword.getText().toString().isEmpty() || mpassword.getText().toString().length() < 8 ){   //  !(isValidPassword(mpassword.getText().toString().trim()))  ){
-            mpassword.setError("Use at least one uppercase letter, lowercase letter, number, special characters and");
+            mpassword.setError("Email should be at least 8 characters");
         }
         else if(!mconfirmPassword.getText().toString().equals(mpassword.getText().toString())){
             mconfirmPassword.setError("Password does not match");
@@ -74,12 +87,37 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 //
 //    }
 
+    private void registerUser(){
+        mprogressBar.setVisibility(View.VISIBLE);
+        String email = memail.getText().toString().trim();
+        String password = mpassword.getText().toString().trim();
+
+        firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+                    Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+                    startActivity(intent);
+                }
+                else{
+
+                    Toast.makeText(SignUpActivity.this, "Could not register.. please try again", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
+    }
+
     @Override
     public void onClick(View v) {
         if (v == msignup){
             if (validation()) {
-                Toast.makeText(this, "Sign Up Successfully", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Registered Successfully", Toast.LENGTH_SHORT).show();
+
+            registerUser();
             }
+
         }
         if (v == mlogin){
             Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
