@@ -1,17 +1,19 @@
-package com.jacky.mysafari.adapters;
+package com.jacky.mysafari.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.jacky.mysafari.Country;
+import com.jacky.mysafari.Models.Country;
 import com.jacky.mysafari.R;
+import com.jacky.mysafari.UI.DestinationsActivity;
+import com.jacky.mysafari.UI.MainActivity;
 
 import java.util.ArrayList;
 
@@ -46,18 +48,26 @@ public class ImagesListAdapter extends RecyclerView.Adapter< ImagesListAdapter.I
         return mCountry.size();
     }
 
-    public class ImagesViewHolder extends RecyclerView.ViewHolder{
+    public class ImagesViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         @BindView(R.id.country_name) TextView mCountry;
 
-        private Context mContext;
+        private Context context;
+
         public ImagesViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-            mContext = itemView.getContext();
+            context = itemView.getContext();
+
+            itemView.setOnClickListener(this);
         }
         public void bindCountry(Country country) {
             mCountry.setText(country.getName());
         }
 
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(context, DestinationsActivity.class);
+        context.startActivity(intent);
+        }
     }
 }

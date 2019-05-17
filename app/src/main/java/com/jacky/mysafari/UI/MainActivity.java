@@ -1,4 +1,4 @@
-package com.jacky.mysafari;
+package com.jacky.mysafari.UI;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,7 +14,9 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
-import com.jacky.mysafari.adapters.ImagesListAdapter;
+import com.jacky.mysafari.Adapters.ImagesListAdapter;
+import com.jacky.mysafari.Models.Country;
+import com.jacky.mysafari.R;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -27,7 +29,6 @@ import android.view.Menu;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

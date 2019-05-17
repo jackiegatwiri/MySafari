@@ -1,4 +1,4 @@
-package com.jacky.mysafari;
+package com.jacky.mysafari.Models;
 
 public class Country {
     String name;

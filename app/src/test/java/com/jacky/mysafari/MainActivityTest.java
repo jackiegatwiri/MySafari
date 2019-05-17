@@ -1,5 +1,7 @@
 package com.jacky.mysafari;
 
+import com.jacky.mysafari.UI.MainActivity;
+
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;

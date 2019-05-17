@@ -1,8 +1,8 @@
 package com.jacky.mysafari;
 
-import org.junit.Before;
+import com.jacky.mysafari.UI.LoginActivity;
+
 import org.junit.runner.RunWith;
-import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 
 @RunWith(RobolectricTestRunner.class)

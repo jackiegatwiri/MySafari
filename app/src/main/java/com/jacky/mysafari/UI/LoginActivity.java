@@ -1,12 +1,10 @@
-package com.jacky.mysafari;
+package com.jacky.mysafari.UI;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.util.Log;
 
 import android.content.Intent;
 import android.util.Patterns;
@@ -16,6 +14,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.jacky.mysafari.R;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -23,13 +27,15 @@ import butterknife.ButterKnife;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     @BindView(R.id.email)
-    TextView memail;
+    EditText memail;
     @BindView(R.id.password)
-    TextView mpassword;
+    EditText mpassword;
     @BindView(R.id.login)
     Button mlogin;
     @BindView(R.id.signup)
     TextView msignup;
+
+    private FirebaseAuth firebaseAuth;
 
 
     @Override
@@ -40,6 +46,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         mlogin.setOnClickListener(this);
         msignup.setOnClickListener(this);
+
+        firebaseAuth = FirebaseAuth.getInstance();
     }
 
     public boolean validation() {
@@ -61,11 +69,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         if (v == mlogin) {
             if (validation()) {
-                String emails = memail.getText().toString();
-                Toast.makeText(this, "Login Successfully", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                intent.putExtra("emails", emails);
-                startActivity(intent);
+                loginUser();
 
             }
         }
@@ -75,6 +79,27 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
 
 
+    }
+
+    private void loginUser() {
+
+        String email = memail.getText().toString().trim();
+        String password = mpassword.getText().toString().trim();
+        firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+                    String emails = memail.getText().toString();
+                    Toast.makeText(LoginActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    intent.putExtra("emails", emails);
+                    startActivity(intent);
+                }
+                else {
+                    Toast.makeText(LoginActivity.this, task.getException().getMessage().toString(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 }
 
