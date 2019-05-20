@@ -32,9 +32,10 @@ public class TriposoService {
                 for(int i = 0; i < resultsJSON.length(); i++){
                     JSONObject destinationJSON = resultsJSON.getJSONObject(i);
                     String name = destinationJSON.getString("name");
-                    String website = destinationJSON.getString("url");
+                   // String website = destinationJSON.getString("url");
+                    String website = "hey.com";
                     String snippet = destinationJSON.getString("snippet");
-                    double rating = destinationJSON.getDouble("rating");
+                    double rating = destinationJSON.getDouble("score");
                     double latitude = destinationJSON.getJSONObject("coordinates").getDouble("latitude");
                     double longitude = destinationJSON.getJSONObject("coordinates").getDouble("longitude");
                     String image = destinationJSON.getJSONArray("images").getJSONObject(0).getString("source_url");
