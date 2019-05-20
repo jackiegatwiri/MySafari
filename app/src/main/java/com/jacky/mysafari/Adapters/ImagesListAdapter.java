@@ -49,7 +49,7 @@ public class ImagesListAdapter extends RecyclerView.Adapter< ImagesListAdapter.I
     }
 
     public class ImagesViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        @BindView(R.id.country_name) TextView mCountry;
+        @BindView(R.id.country_name) TextView Country;
 
         private Context context;
 
@@ -61,12 +61,14 @@ public class ImagesListAdapter extends RecyclerView.Adapter< ImagesListAdapter.I
             itemView.setOnClickListener(this);
         }
         public void bindCountry(Country country) {
-            mCountry.setText(country.getName());
+            Country.setText(country.getName());
         }
 
         @Override
         public void onClick(View v) {
+            int position  = getLayoutPosition();
             Intent intent = new Intent(context, DestinationsActivity.class);
+            intent.putExtra("country", mCountry.get(position).getName());
         context.startActivity(intent);
         }
     }

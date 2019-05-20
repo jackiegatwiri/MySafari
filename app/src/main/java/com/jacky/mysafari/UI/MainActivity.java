@@ -55,11 +55,13 @@ public class MainActivity extends AppCompatActivity
         mCountry.add(new Country("Italy"));
         mCountry.add(new Country("England"));
         mCountry.add(new Country("Hungary"));
-        mCountry.add(new Country("Kenya"));
+        mCountry.add(new Country("France"));
         mCountry.add(new Country("India"));
         mCountry.add(new Country("philippines"));
         mCountry.add(new Country("USA"));
         mCountry.add(new Country("Peninsula"));
+
+
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
