@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.jacky.mysafari.Models.Country;
 import com.jacky.mysafari.Models.Destination;
 import com.jacky.mysafari.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -49,6 +51,8 @@ public class DestinationsAdapter extends RecyclerView.Adapter<DestinationsAdapte
     public class DestinationsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         @BindView(R.id.destination_name)
         TextView Destination;
+        @BindView(R.id.imageid)
+        ImageView imageView;
         private Context context;
 
         public DestinationsViewHolder(@NonNull View itemView) {
@@ -61,6 +65,7 @@ public class DestinationsAdapter extends RecyclerView.Adapter<DestinationsAdapte
 
         public void bindDestination(Destination destination) {
             Destination.setText(destination.getmName());
+            Picasso.get().load(destination.getmImageUrl()).into(imageView);
         }
         @Override
         public void onClick(View v) {
