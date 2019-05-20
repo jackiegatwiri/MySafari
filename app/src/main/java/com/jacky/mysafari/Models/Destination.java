@@ -1,8 +1,13 @@
 package com.jacky.mysafari.Models;
 
+
+import org.parceler.Parcel;
+
+@Parcel
 public class Destination {
 
     private String mName;
+    private String mType;
     private String mSnippet;
     private String mWebsite;
     private double mRating;
@@ -10,8 +15,12 @@ public class Destination {
     private double mLatitude;
     private double mLongitude;
 
-    public Destination(String mName, String mSnippet, String mWebsite, double mRating, String mImageUrl, double mLatitude, double mLongitude) {
+    public Destination() {
+    }
+
+    public Destination(String mName, String mType, String mSnippet, String mWebsite, double mRating, String mImageUrl, double mLatitude, double mLongitude) {
         this.mName = mName;
+        this.mType = mType;
         this.mSnippet = mSnippet;
         this.mWebsite = mWebsite;
         this.mRating = mRating;
@@ -30,6 +39,10 @@ public class Destination {
 
     public String getmWebsite() {
         return mWebsite;
+    }
+
+    public String getmType() {
+        return mType;
     }
 
     public double getmRating() {

@@ -1,6 +1,7 @@
 package com.jacky.mysafari.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,10 +11,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.jacky.mysafari.Models.Country;
+import com.jacky.mysafari.UI.DestinationDetailActivity;
 import com.jacky.mysafari.Models.Destination;
 import com.jacky.mysafari.R;
 import com.squareup.picasso.Picasso;
+
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 
@@ -69,7 +72,13 @@ public class DestinationsAdapter extends RecyclerView.Adapter<DestinationsAdapte
         }
         @Override
         public void onClick(View v) {
-            int position  = getLayoutPosition();
+            int itemPosition  = getLayoutPosition();
+            Intent intent = new Intent(mContext, DestinationDetailActivity.class);
+            intent.putExtra("position", itemPosition);
+            intent.putExtra("destinations", Parcels.wrap(mDestinations));
+            context.startActivity(intent);
+
+
         }
     }
 }

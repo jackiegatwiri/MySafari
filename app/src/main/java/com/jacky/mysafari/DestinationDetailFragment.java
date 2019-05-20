@@ -1,110 +1,80 @@
 package com.jacky.mysafari;
 
-import android.content.Context;
-import android.net.Uri;
+
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.os.Parcel;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.jacky.mysafari.Models.Destination;
+import com.squareup.picasso.Picasso;
+
+import org.parceler.Parcels;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link DestinationDetailFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link DestinationDetailFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class DestinationDetailFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+public class DestinationDetailFragment extends Fragment implements View.OnClickListener {
+    @BindView(R.id.coordinatesButton)
+    Button coordinates;
+    @BindView(R.id.DestinationImageView)
+    ImageView destinationImage;
+    @BindView(R.id.destinationNameTextView)
+    TextView destinitionText;
+    @BindView(R.id.ratingTextView)
+    TextView rating;
+    @BindView(R.id.cityTextView)
+    TextView cityText;
+    @BindView(R.id.websiteTextView)
+    TextView websiteText;
+    @BindView(R.id.urlTextView)
+    TextView urlText;
+    @BindView(R.id.snippetTextView)
+    TextView snippetText;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private Destination mDestinition;
 
-    private OnFragmentInteractionListener mListener;
 
-    public DestinationDetailFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment DestinationDetailFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static DestinationDetailFragment newInstance(String param1, String param2) {
-        DestinationDetailFragment fragment = new DestinationDetailFragment();
+    public static DestinationDetailFragment newInstance(Destination destination) {
+        DestinationDetailFragment destinationDetailFragment = new DestinationDetailFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+        args.putParcelable("destination", Parcels.wrap(destination));
+        destinationDetailFragment.setArguments(args);
+        return destinationDetailFragment;
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        mDestinition = Parcels.unwrap(getArguments().getParcelable("destination"));
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_destination_detail2, container, false);
-    }
+        View view = inflater.inflate(R.layout.fragment_destination_detail, container, false);
+        ButterKnife.bind(this, view);
+        Picasso.get().load(mDestinition.getmImageUrl()).into(destinationImage);
+        destinitionText.setText(mDestinition.getmName());
+        rating.setText(Double.toString(mDestinition.getmRating()) + "/10");
+        cityText.setText(mDestinition.getmType());
+        urlText.setText(mDestinition.getmWebsite());
+        snippetText.setText(mDestinition.getmSnippet());
+        return view;
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
     }
 
     @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
+    public void onClick(View v) {
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
     }
 }
