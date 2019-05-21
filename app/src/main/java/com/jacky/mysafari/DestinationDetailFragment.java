@@ -1,6 +1,8 @@
 package com.jacky.mysafari;
 
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -69,12 +71,20 @@ public class DestinationDetailFragment extends Fragment implements View.OnClickL
         cityText.setText(mDestinition.getmType());
         urlText.setText(mDestinition.getmWebsite());
         snippetText.setText(mDestinition.getmSnippet());
+
+        urlText.setOnClickListener(this);
         return view;
 
     }
 
     @Override
     public void onClick(View v) {
+
+        if (v == urlText){
+            Intent webIntent = new Intent(Intent.ACTION_VIEW,
+                    Uri.parse(mDestinition.getmWebsite()));
+            startActivity(webIntent);
+        }
 
     }
 }
