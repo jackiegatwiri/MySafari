@@ -1,6 +1,7 @@
 package com.jacky.mysafari;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jacky.mysafari.Models.Destination;
+import com.jacky.mysafari.UI.DestinationsActivity;
 import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
@@ -42,7 +44,9 @@ public class DestinationDetailFragment extends Fragment implements View.OnClickL
     @BindView(R.id.snippetTextView)
     TextView snippetText;
 
+
     private Destination mDestinition;
+    private Context context;
 
 
     public static DestinationDetailFragment newInstance(Destination destination) {
@@ -73,6 +77,7 @@ public class DestinationDetailFragment extends Fragment implements View.OnClickL
         snippetText.setText(mDestinition.getmSnippet());
 
         urlText.setOnClickListener(this);
+        coordinates.setOnClickListener(this);
         return view;
 
     }
@@ -84,6 +89,13 @@ public class DestinationDetailFragment extends Fragment implements View.OnClickL
             Intent webIntent = new Intent(Intent.ACTION_VIEW,
                     Uri.parse(mDestinition.getmWebsite()));
             startActivity(webIntent);
+        }
+
+        if(v == coordinates){
+
+            String geoUri = "http://maps.google.com/maps?q=loc:" + mDestinition.getmLatitude() + "," + mDestinition.getmLongitude();
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(geoUri ));
+            startActivity(intent);
         }
 
     }
