@@ -1,7 +1,7 @@
 ## Jackline Gatwiri
 ## MySafari May 15th 2019
 
-![](screenshots/gif1.gif)
+![](screenshots/gif2.gif)
 
 # Author
 [Jackiegatwiri](https://github.com/jackiegatwiri) 
