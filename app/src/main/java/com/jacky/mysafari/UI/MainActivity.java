@@ -28,6 +28,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.Menu;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -35,13 +36,14 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
     private TextView mnameView;
 
     private ArrayList<Country> mCountry = new ArrayList<>();
     ImagesListAdapter mAdapter;
 
     @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
+    @BindView(R.id.savedDestinationsButton) Button mSaved;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,14 +52,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ButterKnife.bind(this);
 
 
+
+
         mCountry.add(new Country("Italy"));
-        mCountry.add(new Country("England"));
+        mCountry.add(new Country("Russia"));
         mCountry.add(new Country("Hungary"));
         mCountry.add(new Country("France"));
         mCountry.add(new Country("India"));
         mCountry.add(new Country("Germany"));
-        mCountry.add(new Country("Russia"));
-        mCountry.add(new Country("Thailand"));
+
+
 
 
 
@@ -92,6 +96,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(MainActivity.this, 2);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setHasFixedSize(true); //width and height should remain the same
+
+        mSaved.setOnClickListener(this);
     }
 
     @Override
@@ -149,5 +155,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v == mSaved) {
+            Intent intent = new Intent(MainActivity.this, SavedDestinationListActivity.class);
+            startActivity(intent);
+        }
     }
 }
