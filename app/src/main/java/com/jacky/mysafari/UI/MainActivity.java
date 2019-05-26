@@ -1,11 +1,13 @@
 package com.jacky.mysafari.UI;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import android.preference.PreferenceManager;
 import android.view.View;
 
 import androidx.core.view.GravityCompat;
@@ -33,24 +35,20 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity
-
-
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private TextView mnameView;
 
     private ArrayList<Country> mCountry = new ArrayList<>();
     ImagesListAdapter mAdapter;
 
-    @BindView(R.id.recyclerView)
-    RecyclerView mRecyclerView;
+    @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         ButterKnife.bind(this);
+
 
         mCountry.add(new Country("Italy"));
         mCountry.add(new Country("England"));
@@ -91,8 +89,6 @@ public class MainActivity extends AppCompatActivity
 
         mAdapter = new ImagesListAdapter(getApplicationContext(), mCountry);
         mRecyclerView.setAdapter(mAdapter);
-//                        RecyclerView.LayoutManager layoutManager =
-//                                new LinearLayoutManager(RestaurantsActivity.this);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(MainActivity.this, 2);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setHasFixedSize(true); //width and height should remain the same

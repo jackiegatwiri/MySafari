@@ -15,7 +15,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.jacky.mysafari.Models.Destination;
 import com.jacky.mysafari.UI.DestinationsActivity;
 import com.squareup.picasso.Picasso;
@@ -43,6 +47,7 @@ public class DestinationDetailFragment extends Fragment implements View.OnClickL
     TextView urlText;
     @BindView(R.id.snippetTextView)
     TextView snippetText;
+    @BindView(R.id.saveDestinationButton) Button mSave;
 
 
     private Destination mDestinition;
@@ -78,6 +83,8 @@ public class DestinationDetailFragment extends Fragment implements View.OnClickL
 
         urlText.setOnClickListener(this);
         coordinates.setOnClickListener(this);
+        mSave.setOnClickListener(this);
+
         return view;
 
     }
@@ -96,6 +103,11 @@ public class DestinationDetailFragment extends Fragment implements View.OnClickL
             String geoUri = "http://maps.google.com/maps?q=loc:" + mDestinition.getmLatitude() + "," + mDestinition.getmLongitude();
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(geoUri ));
             startActivity(intent);
+        }
+        if(v == mSave){
+            DatabaseReference destinationRef = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_DESTINATIONS);
+            destinationRef.push().setValue(mDestinition);
+            Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
         }
 
     }

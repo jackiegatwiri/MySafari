@@ -26,14 +26,10 @@ import butterknife.ButterKnife;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
-    @BindView(R.id.email)
-    EditText memail;
-    @BindView(R.id.password)
-    EditText mpassword;
-    @BindView(R.id.login)
-    Button mlogin;
-    @BindView(R.id.signup)
-    TextView msignup;
+    @BindView(R.id.email) EditText memail;
+    @BindView(R.id.password) EditText mpassword;
+    @BindView(R.id.login) Button mlogin;
+    @BindView(R.id.signup) TextView msignup;
 
     private FirebaseAuth firebaseAuth;
 
@@ -85,19 +81,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         String email = memail.getText().toString().trim();
         String password = mpassword.getText().toString().trim();
-        firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    String emails = memail.getText().toString();
-                    Toast.makeText(LoginActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    intent.putExtra("emails", emails);
-                    startActivity(intent);
-                }
-                else {
-                    Toast.makeText(LoginActivity.this, task.getException().getMessage().toString(), Toast.LENGTH_SHORT).show();
-                }
+        firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+            if(task.isSuccessful()){
+                String emails = memail.getText().toString();
+                Toast.makeText(LoginActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                intent.putExtra("emails", emails);
+                startActivity(intent);
+            }
+            else {
+                Toast.makeText(LoginActivity.this, task.getException().getMessage().toString(), Toast.LENGTH_SHORT).show();
             }
         });
     }

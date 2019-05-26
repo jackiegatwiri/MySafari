@@ -16,7 +16,7 @@ public class WelcomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
-        new Handler().postDelayed(new Runnable() {
+        new Handler().postDelayed(new Runnable() { //handler schedules messages and runnables to be executed at some point in the future 2. enques an action to be performed on diff threads than
             @Override
             public void run() {
                 Intent mainIntent = new Intent(WelcomeActivity.this, LoginActivity.class);
