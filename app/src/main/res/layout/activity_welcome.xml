@@ -4,19 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#02252b"
+    android:background="@color/gradStop"
     tools:context=".UI.WelcomeActivity">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="188dp"
-        android:layout_height="454dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginBottom="172dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/p0"
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="MySafari"
+        android:textAlignment="center"
+        android:textColor="#fff"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:fontFamily="sans-serif-condensed-light"
+        android:textSize="40dp"/>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

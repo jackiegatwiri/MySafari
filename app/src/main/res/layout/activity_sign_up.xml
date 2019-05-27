@@ -4,30 +4,42 @@
     android:layout_height="fill_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true"
-    android:background="@color/colorAccent">
+    android:background="@color/gradStop">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="150dp"
+        android:paddingTop="20dp"
         android:paddingLeft="30dp"
         android:paddingRight="30dp"
         android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign up"
+            android:textColor="#fff"
+            android:layout_marginBottom="60dp"
+            android:id="@+id/text"
+            android:textSize="40dp"
+            android:layout_marginTop="1dp"/>
+
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
+
             >
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
-                android:textColor="@color/accent"
-                android:textColorHint="@color/accent"
+                android:textColor="#fff"
+                android:textColorHint="#fff"
                 android:hint="Name" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -42,7 +54,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
-                android:hint="Email" />
+                android:hint="Email"
+                android:textColor="#fff"
+                android:textColorHint="#fff"/>
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -57,7 +71,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                android:hint="Password"/>
+                android:hint="Password"
+                android:textColor="#fff"
+                android:textColorHint="#fff"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -71,7 +87,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                android:hint="Confirm Password"/>
+                android:hint="Confirm Password"
+                android:textColor="#fff"
+                android:textColorHint="#fff"/>
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -99,7 +117,8 @@
             android:layout_marginBottom="24dp"
             android:text="Already a member? Login"
             android:textAlignment="center"
-            android:textSize="16dip"/>
+            android:textSize="16dip"
+            android:textColor="#fff"/>
 
     </LinearLayout>
 </ScrollView>

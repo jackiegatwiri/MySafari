@@ -1,5 +1,6 @@
 package com.jacky.mysafari.UI;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -32,6 +33,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @BindView(R.id.signup) TextView msignup;
 
     private FirebaseAuth firebaseAuth;
+    private TextView mText;
+
 
 
     @Override
@@ -42,8 +45,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         mlogin.setOnClickListener(this);
         msignup.setOnClickListener(this);
-
         firebaseAuth = FirebaseAuth.getInstance();
+
+        mText = findViewById(R.id.text);
+        Typeface pacific = Typeface.createFromAsset(getAssets(), "fonts/Pacifico.ttf");
+        mText.setTypeface(pacific);
     }
 
     public boolean validation() {

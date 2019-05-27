@@ -14,15 +14,15 @@
         <activity android:name=".UI.SavedDestinationListActivity"></activity>
         <activity android:name=".UI.DestinationDetailActivity" />
         <activity android:name=".UI.DestinationsActivity"
-            android:theme="@style/AppTheme3"/>
+            android:theme="@style/AppTheme4"/>
         <activity
             android:name=".UI.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".UI.SignUpActivity"
-            android:theme="@style/AppTheme.Dark" />
-        <activity android:name=".UI.WelcomeActivity">
+            android:theme="@style/AppTheme4" />
+        <activity android:name=".UI.WelcomeActivity" android:theme="@style/AppTheme4">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,7 +31,7 @@
         </activity>
         <activity
             android:name=".UI.LoginActivity"
-            android:theme="@style/AppTheme.Dark" />
+            android:theme="@style/AppTheme4" />
     </application>
 
 </manifest>

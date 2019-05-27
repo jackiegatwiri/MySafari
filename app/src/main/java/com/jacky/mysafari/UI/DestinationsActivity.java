@@ -3,6 +3,7 @@ package com.jacky.mysafari.UI;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -114,7 +115,7 @@ public class DestinationsActivity extends AppCompatActivity {
 
                         destinationAdapter = new DestinationsAdapter(mDestinations, getApplicationContext());
                         mrView.setAdapter(destinationAdapter);
-                        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 2);
+                        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
                         mrView.setLayoutManager(layoutManager);
                         mrView.setHasFixedSize(true);
 

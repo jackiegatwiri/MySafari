@@ -1,6 +1,7 @@
 package com.jacky.mysafari.UI;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -33,6 +34,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     @BindView(R.id.login) TextView mlogin;
     @BindView(R.id.progressBar) ProgressBar mprogressBar;
     private FirebaseAuth firebaseAuth;
+    private TextView mText;
 
 
     @Override
@@ -45,6 +47,10 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         msignup.setOnClickListener(this);
         mlogin.setOnClickListener(this);
         mprogressBar.setVisibility(View.INVISIBLE);
+
+        mText = findViewById(R.id.text);
+        Typeface pacific = Typeface.createFromAsset(getAssets(), "fonts/Pacifico.ttf");
+        mText.setTypeface(pacific);
     }
     public boolean validation(){
         boolean valid = false;
