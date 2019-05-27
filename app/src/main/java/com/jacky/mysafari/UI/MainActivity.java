@@ -16,6 +16,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.jacky.mysafari.Adapters.ImagesListAdapter;
 import com.jacky.mysafari.Models.Country;
 import com.jacky.mysafari.R;
@@ -144,6 +145,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(intent);
         }
 
+        if(id == R.id.nav_logout)
+        {
+            logout();
+            return true;
+        }
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -155,5 +162,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //            Intent intent = new Intent(MainActivity.this, SavedDestinationListActivity.class);
 //            startActivity(intent);
 //        }
+    }
+    private void logout(){
+        FirebaseAuth.getInstance().signOut();
+        Intent intent = new Intent (MainActivity.this, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        finish();
     }
 }
