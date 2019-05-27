@@ -8,6 +8,7 @@ public class Constants {
     public static final String SCORE = "score";
     public static final String COUNT = "count";
     public static final String FIREBASE_CHILD_DESTINATIONS = "destinations";
+    public static final String PREFERENCES_DESTINATION_KEY = "destination";
 
 
 }

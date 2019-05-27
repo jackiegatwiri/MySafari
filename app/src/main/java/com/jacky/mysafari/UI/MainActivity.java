@@ -43,7 +43,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ImagesListAdapter mAdapter;
 
     @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
-    @BindView(R.id.savedDestinationsButton) Button mSaved;
+//    @BindView(R.id.savedDestinationsButton) Button mSaved;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setHasFixedSize(true); //width and height should remain the same
 
-        mSaved.setOnClickListener(this);
+//        mSaved.setOnClickListener(this);
     }
 
     @Override
@@ -138,18 +139,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_home) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_tools) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        if (id == R.id.nav_favorites) {
+            Intent intent = new Intent(MainActivity.this, SavedDestinationListActivity.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -159,9 +151,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onClick(View v) {
-        if (v == mSaved) {
-            Intent intent = new Intent(MainActivity.this, SavedDestinationListActivity.class);
-            startActivity(intent);
-        }
+//        if (v == mSaved) {
+//            Intent intent = new Intent(MainActivity.this, SavedDestinationListActivity.class);
+//            startActivity(intent);
+//        }
     }
 }
