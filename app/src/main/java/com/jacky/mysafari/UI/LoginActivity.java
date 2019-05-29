@@ -50,6 +50,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         mText = findViewById(R.id.text);
         Typeface pacific = Typeface.createFromAsset(getAssets(), "fonts/Pacifico.ttf");
         mText.setTypeface(pacific);
+
+
+
+
+
+
+
+
+
+
     }
 
     public boolean validation() {
