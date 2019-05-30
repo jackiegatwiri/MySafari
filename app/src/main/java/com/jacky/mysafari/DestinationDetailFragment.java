@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.jacky.mysafari.Models.Destination;
@@ -105,9 +106,16 @@ public class DestinationDetailFragment extends Fragment implements View.OnClickL
             startActivity(intent);
         }
         if(v == mSave){
-            DatabaseReference destinationRef = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_DESTINATIONS);
-            destinationRef.push().setValue(mDestinition);
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            String uid = user.getUid();
+            DatabaseReference destinationRef = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_DESTINATIONS).child(uid);
+            DatabaseReference pushRef = destinationRef.push();
+            String pushId = pushRef.getKey();
+            mDestinition.setPushId(pushId);
+            pushRef.setValue(mDestinition);
             Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
+
+
         }
 
     }

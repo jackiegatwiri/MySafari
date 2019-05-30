@@ -14,6 +14,7 @@ public class Destination {
     private String mImageUrl;
     private double mLatitude;
     private double mLongitude;
+    private String pushId;
 
     public Destination() {
     }
@@ -60,4 +61,6 @@ public class Destination {
     public double getmLongitude() {
         return mLongitude;
     }
+    public String getPushId(){return pushId;}
+    public void setPushId(String pushId){this.pushId = pushId;}
 }
