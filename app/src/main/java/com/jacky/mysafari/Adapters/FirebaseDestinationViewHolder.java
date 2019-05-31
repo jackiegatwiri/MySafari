@@ -27,10 +27,10 @@ import org.parceler.Parcels;
 import java.util.ArrayList;
 
 public class FirebaseDestinationViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
+    private static final int MAX_WIDTH = 200;
+    private static final int MAX_HEIGHT = 200;
     View mView;
     Context mContext;
-
     public ImageView mDestinationImageView;
 
     public FirebaseDestinationViewHolder(@NonNull View itemView) {

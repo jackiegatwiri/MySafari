@@ -17,6 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.jacky.mysafari.Adapters.FirebaseDestinationListAdapter;
 import com.jacky.mysafari.Adapters.FirebaseDestinationViewHolder;
 import com.jacky.mysafari.Constants;
@@ -50,14 +51,19 @@ public class SavedDestinationListActivity extends AppCompatActivity implements O
     private void setUpFirebaseAdapter() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = user.getUid();
-        mDestinationReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_DESTINATIONS).child(uid);
+
+        Query query = FirebaseDatabase.getInstance()
+                .getReference(Constants.FIREBASE_CHILD_DESTINATIONS)
+                .child(uid)
+                .orderByChild(Constants.FIREBASE_QUERY_INDEX);
 
         FirebaseRecyclerOptions<Destination> options =
                 new FirebaseRecyclerOptions.Builder<Destination>()
-                        .setQuery(mDestinationReference, Destination.class)
+                        .setQuery(query, Destination.class)
                         .build();
 
-        mFirebaseAdapter = new FirebaseDestinationListAdapter(options, mDestinationReference, this, this);
+        mFirebaseAdapter = new FirebaseDestinationListAdapter(options,
+                query, this, this);
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mFirebaseAdapter);
@@ -81,5 +87,10 @@ public class SavedDestinationListActivity extends AppCompatActivity implements O
     public void onStartDrag(RecyclerView.ViewHolder viewHolder){
         mItemTouchHelper.startDrag(viewHolder);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mFirebaseAdapter.stopListening(); }
 }
 
