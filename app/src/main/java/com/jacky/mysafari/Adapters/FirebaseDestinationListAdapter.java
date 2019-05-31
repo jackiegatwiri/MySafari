@@ -1,6 +1,7 @@
 package com.jacky.mysafari.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -17,8 +18,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
 import com.jacky.mysafari.Models.Destination;
 import com.jacky.mysafari.R;
+import com.jacky.mysafari.UI.DestinationDetailActivity;
 import com.jacky.mysafari.util.ItemTouchHelperAdapter;
 import com.jacky.mysafari.util.OnStartDragListener;
+
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -105,6 +109,16 @@ getRef(position).removeValue();
                     mOnStartDragListener.onStartDrag(viewHolder);
                 }
                 return false;
+            }
+        });
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, DestinationDetailActivity.class);
+                intent.putExtra("position", viewHolder.getAdapterPosition());
+                intent.putExtra("destinations", Parcels.wrap(mDestinations));
+                mContext.startActivity(intent);
             }
         });
     }

@@ -26,7 +26,7 @@ import org.parceler.Parcels;
 
 import java.util.ArrayList;
 
-public class FirebaseDestinationViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class FirebaseDestinationViewHolder extends RecyclerView.ViewHolder {
     private static final int MAX_WIDTH = 200;
     private static final int MAX_HEIGHT = 200;
     View mView;
@@ -37,7 +37,6 @@ public class FirebaseDestinationViewHolder extends RecyclerView.ViewHolder imple
         super(itemView);
         mView = itemView;
         mContext = itemView.getContext();
-        itemView.setOnClickListener(this);
     }
 
     public void bindDestination(Destination destiation) {
@@ -53,34 +52,5 @@ public class FirebaseDestinationViewHolder extends RecyclerView.ViewHolder imple
         categoryTextView.setText(destiation.getmType());
         ratingTextView.setText("Rating: " + destiation.getmRating() + "/10");
 
-    }
-
-    @Override
-    public void onClick(View v) {
-        final ArrayList<Destination> destinations = new ArrayList<>();
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String uid = user.getUid();
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_DESTINATIONS).child(uid);
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {
-
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    destinations.add(snapshot.getValue(Destination.class));
-                }
-
-                int itemPosition = getLayoutPosition();
-
-                Intent intent = new Intent(mContext, DestinationDetailActivity.class);
-                intent.putExtra("position", itemPosition + "");
-                intent.putExtra("destinations", Parcels.wrap(destinations));
-
-                mContext.startActivity(intent);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });
     }
 }
