@@ -15,6 +15,7 @@ public class Destination {
     private double mLatitude;
     private double mLongitude;
     private String pushId;
+    String index;
 
     public Destination() {
     }
@@ -28,6 +29,8 @@ public class Destination {
         this.mImageUrl = mImageUrl;
         this.mLatitude = mLatitude;
         this.mLongitude = mLongitude;
+        this.index = "not_specified";
+
     }
 
     public String getmName() {
@@ -63,4 +66,11 @@ public class Destination {
     }
     public String getPushId(){return pushId;}
     public void setPushId(String pushId){this.pushId = pushId;}
+    public String getIndex() {
+        return index;
+    }
+
+    public void setIndex(String index) {
+        this.index = index;
+    }
 }
