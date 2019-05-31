@@ -31,6 +31,8 @@ public class FirebaseDestinationViewHolder extends RecyclerView.ViewHolder imple
     View mView;
     Context mContext;
 
+    public ImageView mDestinationImageView;
+
     public FirebaseDestinationViewHolder(@NonNull View itemView) {
         super(itemView);
         mView = itemView;
@@ -39,13 +41,14 @@ public class FirebaseDestinationViewHolder extends RecyclerView.ViewHolder imple
     }
 
     public void bindDestination(Destination destiation) {
+        mDestinationImageView = (ImageView) mView.findViewById(R.id.destinationImageView);
         ImageView destinationImageView = (ImageView) mView.findViewById(
-                R.id.DestinationImageView);
+                R.id.destinationImageView);
         TextView nameTextView = (TextView) mView.findViewById(R.id.destinationNameTextView);
         TextView categoryTextView = (TextView) mView.findViewById(R.id.cityTextView);
         TextView ratingTextView = (TextView) mView.findViewById(R.id.ratingTextView);
 
-        Picasso.get().load(destiation.getmImageUrl()).into(destinationImageView);
+        Picasso.get().load(destiation.getmImageUrl()).into(mDestinationImageView);
         nameTextView.setText(destiation.getmName());
         categoryTextView.setText(destiation.getmType());
         ratingTextView.setText("Rating: " + destiation.getmRating() + "/10");
