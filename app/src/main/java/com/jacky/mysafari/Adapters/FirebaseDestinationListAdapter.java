@@ -1,7 +1,9 @@
 package com.jacky.mysafari.Adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -33,6 +35,7 @@ public class FirebaseDestinationListAdapter extends FirebaseRecyclerAdapter<Dest
     private Context mContext;
     private ChildEventListener mChildEventListener;
     private ArrayList<Destination> mDestinations = new ArrayList<>();
+
 
 
     public FirebaseDestinationListAdapter(FirebaseRecyclerOptions<Destination> options,
@@ -99,17 +102,15 @@ public class FirebaseDestinationListAdapter extends FirebaseRecyclerAdapter<Dest
 getRef(position).removeValue();
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onBindViewHolder(@NonNull FirebaseDestinationViewHolder viewHolder, int position, @NonNull Destination model) {
         viewHolder.bindDestination(model);
-        viewHolder.mDestinationImageView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getActionMasked() == MotionEvent.ACTION_DOWN) {
-                    mOnStartDragListener.onStartDrag(viewHolder);
-                }
-                return false;
+        viewHolder.mDestinationImageView.setOnTouchListener((v, event) -> {
+            if (event.getActionMasked() == MotionEvent.ACTION_DOWN) {
+                mOnStartDragListener.onStartDrag(viewHolder);
             }
+            return false;
         });
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
 

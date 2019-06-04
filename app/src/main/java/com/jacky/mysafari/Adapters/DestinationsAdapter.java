@@ -2,6 +2,7 @@ package com.jacky.mysafari.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.jacky.mysafari.DestinationDetailFragment;
 import com.jacky.mysafari.UI.DestinationDetailActivity;
 import com.jacky.mysafari.Models.Destination;
 import com.jacky.mysafari.R;
@@ -27,6 +29,7 @@ public class DestinationsAdapter extends RecyclerView.Adapter<DestinationsAdapte
 
     private ArrayList<Destination> mDestinations = new ArrayList<>();
     private Context mContext;
+
 
     public DestinationsAdapter(ArrayList<Destination> mDestinations, Context mContext) {
         this.mDestinations = mDestinations;
@@ -57,14 +60,17 @@ public class DestinationsAdapter extends RecyclerView.Adapter<DestinationsAdapte
         @BindView(R.id.imageid)
         ImageView imageView;
         private Context context;
+        private int mOrientation;
 
         public DestinationsViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
             context = itemView.getContext();
-
             itemView.setOnClickListener(this);
-        }
+
+
+
+            }
 
         public void bindDestination(Destination destination) {
             Destination.setText(destination.getmName());
@@ -72,13 +78,13 @@ public class DestinationsAdapter extends RecyclerView.Adapter<DestinationsAdapte
         }
         @Override
         public void onClick(View v) {
-            int itemPosition  = getLayoutPosition();
+            int itemPosition = getLayoutPosition();
             Intent intent = new Intent(mContext, DestinationDetailActivity.class);
             intent.putExtra("position", itemPosition);
             intent.putExtra("destinations", Parcels.wrap(mDestinations));
             context.startActivity(intent);
+        }
 
 
         }
     }
-}

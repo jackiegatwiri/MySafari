@@ -29,68 +29,15 @@ import com.jacky.mysafari.util.SimpleItemTouchHelperCallback;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class SavedDestinationListActivity extends AppCompatActivity implements OnStartDragListener {
-    private DatabaseReference mDestinationReference;
-    private FirebaseDestinationListAdapter mFirebaseAdapter;
-    private ItemTouchHelper mItemTouchHelper;
-    @BindView(R.id.rView) RecyclerView mRecyclerView;
+public class SavedDestinationListActivity extends AppCompatActivity{
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_destinations);
-        ButterKnife.bind(this);
-
-
-        setUpFirebaseAdapter();
-
 
     }
-
-    private void setUpFirebaseAdapter() {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String uid = user.getUid();
-
-        Query query = FirebaseDatabase.getInstance()
-                .getReference(Constants.FIREBASE_CHILD_DESTINATIONS)
-                .child(uid)
-                .orderByChild(Constants.FIREBASE_QUERY_INDEX);
-
-        FirebaseRecyclerOptions<Destination> options =
-                new FirebaseRecyclerOptions.Builder<Destination>()
-                        .setQuery(query, Destination.class)
-                        .build();
-
-        mFirebaseAdapter = new FirebaseDestinationListAdapter(options,
-                query, this, this);
-
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mRecyclerView.setAdapter(mFirebaseAdapter);
-        mRecyclerView.setHasFixedSize(true);
-        ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mFirebaseAdapter);
-        mItemTouchHelper = new ItemTouchHelper(callback);
-        mItemTouchHelper.attachToRecyclerView(mRecyclerView);
-}   @Override
-    protected void onStart() {
-        super.onStart();
-        mFirebaseAdapter.startListening();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        if(mFirebaseAdapter!= null) {
-            mFirebaseAdapter.stopListening();
-        }
-    }
-    public void onStartDrag(RecyclerView.ViewHolder viewHolder){
-        mItemTouchHelper.startDrag(viewHolder);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mFirebaseAdapter.stopListening(); }
 }
 

@@ -37,7 +37,7 @@ public class DestinationsActivity extends AppCompatActivity {
     private SharedPreferences.Editor mEditor;
     private String mRecentAddress;
 
-    @BindView(R.id.rView)
+    @BindView(R.id.recyclerView)
     RecyclerView mrView;
 
     public static final String TAG = DestinationsActivity.class.getSimpleName();

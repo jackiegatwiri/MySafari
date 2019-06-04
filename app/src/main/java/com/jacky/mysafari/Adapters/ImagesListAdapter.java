@@ -69,7 +69,7 @@ public class ImagesListAdapter extends RecyclerView.Adapter< ImagesListAdapter.I
             int position  = getLayoutPosition();
             Intent intent = new Intent(context, DestinationsActivity.class);
             intent.putExtra("country", mCountry.get(position).getName());
-        context.startActivity(intent);
+            context.startActivity(intent);
         }
     }
 }
